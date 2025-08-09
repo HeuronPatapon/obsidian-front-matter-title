@@ -77,7 +77,9 @@ export default class TabManager extends AbstractManager {
             function (self, [pinned], vanilla) {
                 const result = vanilla.call(this, pinned);
                 if (this?.view?.getViewType() === Leaves.MD) {
-                    self.innerUpdate(this.view.file.path);
+                    if ((this?.view?.file ?? null) != null) {
+                        self.innerUpdate(this.view.file.path);
+                    }
                 }
                 return result;
             }
